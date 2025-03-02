@@ -1,0 +1,51 @@
+document.getElementById('sipForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const sipAmount = parseFloat(document.getElementById('sipAmount').value);
+    const interestRate = parseFloat(document.getElementById('interestRate').value) / 100;
+    const timePeriod = parseInt(document.getElementById('timePeriod').value);
+    const currency = document.getElementById('currency').value;
+
+    if (isNaN(sipAmount) || isNaN(interestRate) || isNaN(timePeriod)) {
+        alert("Please fill in all fields correctly.");
+        return;
+    }
+
+    // Formula for SIP Investment Calculation
+    let totalInvestment = sipAmount * timePeriod * 12; // SIP * months
+    let totalReturns = 0;
+
+    for (let t = 1; t <= timePeriod * 12; t++) {
+        totalReturns += sipAmount * Math.pow((1 + interestRate / 12), t);
+    }
+    
+    totalReturns = totalReturns - totalInvestment; // Returns = Total Value - Total Investment
+
+    let totalValue = totalInvestment + totalReturns;
+
+    // Format result with currency symbol
+    let currencySymbol = getCurrencySymbol(currency);
+
+    // Display result
+    document.getElementById('totalInvestment').textContent = `${currencySymbol} ${totalInvestment.toFixed(2)}`;
+    document.getElementById('totalReturns').textContent = `${currencySymbol} ${totalReturns.toFixed(2)}`;
+    document.getElementById('totalValue').textContent = `${currencySymbol} ${totalValue.toFixed(2)}`;
+
+    document.getElementById('result').style.display = 'block';
+});
+
+function getCurrencySymbol(currency) {
+    switch (currency) {
+        case 'INR': return '₹';
+        case 'USD': return '$';
+        case 'EUR': return '€';
+        case 'GBP': return '£';
+        case 'AUD': return 'A$';
+        case 'CAD': return 'C$';
+        case 'JPY': return '¥';
+        case 'CHF': return 'CHF';
+        case 'NZD': return 'NZ$';
+        case 'CNY': return '¥';
+        default: return '';
+    }
+}

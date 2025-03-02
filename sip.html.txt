@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIP Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>SIP Calculator</h1>
+        <form id="sipForm">
+            <label for="sipAmount">SIP Amount:</label>
+            <input type="number" id="sipAmount" placeholder="Enter SIP Amount" required>
+
+            <label for="interestRate">Expected Return (%) per annum:</label>
+            <input type="number" id="interestRate" placeholder="Enter expected return" required>
+
+            <label for="timePeriod">Investment Period (Years):</label>
+            <input type="number" id="timePeriod" placeholder="Enter years" required>
+
+            <label for="currency">Select Currency:</label>
+            <select id="currency" required>
+                <option value="INR">INR - Indian Rupee</option>
+                <option value="USD">USD - US Dollar</option>
+                <option value="EUR">EUR - Euro</option>
+                <option value="GBP">GBP - British Pound</option>
+                <option value="AUD">AUD - Australian Dollar</option>
+                <option value="CAD">CAD - Canadian Dollar</option>
+                <option value="JPY">JPY - Japanese Yen</option>
+                <option value="CHF">CHF - Swiss Franc</option>
+                <option value="NZD">NZD - New Zealand Dollar</option>
+                <option value="CNY">CNY - Chinese Yuan</option>
+            </select>
+
+            <button type="submit">Calculate</button>
+        </form>
+
+        <div id="result">
+            <h2>Result</h2>
+            <p><strong>Total Investment:</strong> <span id="totalInvestment">0</span></p>
+            <p><strong>Total Returns:</strong> <span id="totalReturns">0</span></p>
+            <p><strong>Total Value:</strong> <span id="totalValue">0</span></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
